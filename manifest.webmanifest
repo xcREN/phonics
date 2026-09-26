@@ -1,0 +1,17 @@
+{
+  "name": "磁贴拼读",
+  "short_name": "磁贴拼读",
+  "description": "给 5 岁孩子用的自然拼读：第一组 s a t i p n",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#E9EEF2",
+  "theme_color": "#E9EEF2",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
