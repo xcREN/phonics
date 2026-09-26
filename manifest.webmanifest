@@ -1,7 +1,7 @@
 {
   "name": "磁贴拼读",
   "short_name": "磁贴拼读",
-  "description": "给 5 岁孩子用的自然拼读：第一组 s a t i p n",
+  "description": "给 5 岁孩子用的自然拼读：第一组 s a t i p n，第二组 c k e h r m d",
   "lang": "zh-CN",
   "start_url": "./",
   "scope": "./",

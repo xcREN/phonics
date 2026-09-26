@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>磁贴拼读</title>
-<meta name="description" content="给 5 岁孩子用的自然拼读：第一组 s a t i p n">
+<meta name="description" content="给 5 岁孩子用的自然拼读：第一组 s a t i p n，第二组 c k e h r m d">
 <meta name="theme-color" content="#E9EEF2">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png" type="image/png">
@@ -104,6 +104,17 @@
   .lead h2 { margin: 0; font-family: var(--zh-d); font-weight: 400; font-size: 22px; }
   .lead p { margin: 0; color: var(--muted); font-size: 14px; }
 
+  .group + .group { margin-top: 22px; }
+  .gname { margin: 0 0 10px; font-size: 15px; font-weight: 600; display: flex; align-items: baseline; gap: 10px; }
+  .gname span { font-family: var(--en); font-weight: 400; color: var(--muted); letter-spacing: .08em; }
+  .pair { display: inline-flex; align-items: baseline; gap: .4em; }
+  .tile .pair .mag { font-size: clamp(46px, 13vw, 84px); }
+  .bigletter.two { font-size: clamp(96px, 27vw, 170px); }
+  .count { margin: -6px 0 12px; color: var(--muted); font-size: 14px; }
+  .pgroup { margin: 4px 0 -4px; font-size: 14px; color: var(--muted); font-weight: 600; }
+  .plet { text-align: center; }
+  .plet .mag { font-size: 56px; }
+  .plet .pair .mag { font-size: 32px; }
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   .tile {
     border: none; cursor: pointer; background: var(--panel); border-radius: 24px; box-shadow: var(--shadow);
@@ -208,7 +219,7 @@
   .parent .sub { margin: 0; color: var(--muted); font-size: 14px; }
   .card { background: var(--panel); border-radius: 18px; box-shadow: var(--shadow); padding: 16px; display: flex; flex-direction: column; gap: 14px; }
   .prow { display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: start; padding-top: 14px; border-top: 1px solid var(--line); }
-  .prow:first-of-type { border-top: none; padding-top: 0; }
+  .prow:first-of-type, .pgroup + .prow { border-top: none; padding-top: 0; }
   .prow .mag { font-size: 56px; text-align: center; }
   .prow .tip { margin: 0; font-size: 14px; }
   .prow .ipa { font-family: var(--en); color: var(--muted); }
@@ -249,7 +260,7 @@
 
 <div class="app">
   <header class="top">
-    <div class="brand">磁贴拼读<small>第一组 · s a t i p n</small></div>
+    <div class="brand">磁贴拼读<small>第一组、第二组 · 12 个音</small></div>
     <button class="gear" id="gear" aria-label="家长设置（长按进入）">
       <svg class="ring" width="52" height="52" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"></circle></svg>
       家长
@@ -297,24 +308,73 @@
     { l: "n", ipa: "/n/", pic: "👃", kid: "小鼻子 nnnn",
       tip: "舌尖顶住上牙龈，嘴巴不动，让声音从鼻子出来“nnnn”，可以拉长。别说成“呢”。",
       words: [["nose", "👃"], ["nut", "🥜"], ["nine", "9️⃣"]],
-      prompt: "儿童绘本风格动画，一只小猫闭着眼睛，用小鼻子嗅一朵粉色的花，鼻子一动一动，表情很陶醉，柔和明亮的色彩，圆润可爱，10 秒，画面中不要出现任何文字或字母。" }
+      prompt: "儿童绘本风格动画，一只小猫闭着眼睛，用小鼻子嗅一朵粉色的花，鼻子一动一动，表情很陶醉，柔和明亮的色彩，圆润可爱，10 秒，画面中不要出现任何文字或字母。" },
+
+    // 第二组。c 和 k 是同一个音，放在一块磁贴上，录一次就行
+    { l: "c", also: "k", ipa: "/k/", pic: "📷", kid: "照相机 k k k",
+      tip: "舌根抬起顶住上颚后部，突然放开，只出一口气。别说成“克”或“科”。c 和 k 在这里发同一个音，录一次就够了。",
+      words: [["cat", "🐱"], ["cup", "☕"], ["kite", "🪁"]],
+      prompt: "儿童绘本风格动画，一个圆圆的红色小相机站在草地上，对着一只蝴蝶按下快门，闪光一亮，蝴蝶飞走，小相机开心地摇来摇去，柔和明亮的色彩，圆润可爱，10 秒，画面中不要出现任何文字或字母。" },
+    { l: "e", ipa: "/e/", pic: "🥚", kid: "鸡蛋 e e e",
+      tip: "嘴巴半张，嘴角微微往两边，短短的一声，像“哎”但不拖长，也不滑成“ei”。不是字母名“一”。",
+      words: [["egg", "🥚"], ["elephant", "🐘"], ["envelope", "✉️"]],
+      prompt: "儿童绘本风格动画，一颗白色的大鸡蛋在稻草窝里轻轻摇晃，裂开一道缝，一只毛茸茸的小黄鸡探出头来，柔和明亮的色彩，圆润可爱，10 秒，画面中不要出现任何文字或字母。" },
+    { l: "h", ipa: "/h/", pic: "🐶", kid: "小狗喘气 h h h",
+      tip: "嘴巴张开，像哈气暖手一样轻轻呼出一口气，几乎听不到声音。别说成“喝”，也不是字母名“诶曲”。",
+      words: [["hat", "🎩"], ["horse", "🐴"], ["house", "🏠"]],
+      prompt: "儿童绘本风格动画，一只小狗跑完步停下来，伸着舌头大口喘气，身体一起一伏，尾巴摇个不停，柔和明亮的色彩，圆润可爱，10 秒，画面中不要出现任何文字或字母。" },
+    { l: "r", ipa: "/r/", pic: "🚗", kid: "小汽车 rrrr",
+      tip: "嘴唇微微撅圆，舌尖往上卷但不碰到上颚，声音可以拉长 rrrr。别说成“日”或“儿”。",
+      words: [["rabbit", "🐰"], ["rain", "🌧️"], ["robot", "🤖"]],
+      prompt: "儿童绘本风格动画，一辆红色的小汽车在弯弯的乡间小路上开，轮子转得飞快，扬起一点点尘土，路边的小花跟着摇摆，柔和明亮的色彩，圆润可爱，10 秒，画面中不要出现任何文字或字母。" },
+    { l: "m", ipa: "/m/", pic: "😋", kid: "真好吃 mmmm",
+      tip: "双唇闭上，声音从鼻子出来，像吃到好吃的东西“嗯——”，可以拉长。别说成“么”或“姆”。",
+      words: [["moon", "🌙"], ["milk", "🥛"], ["monkey", "🐒"]],
+      prompt: "儿童绘本风格动画，一个小朋友吃了一大口草莓冰淇淋，闭上眼睛，满足地摸着肚子，脸上露出甜甜的笑，柔和明亮的色彩，圆润可爱，10 秒，画面中不要出现任何文字或字母。" },
+    { l: "d", ipa: "/d/", pic: "🥁", kid: "敲小鼓 d d d",
+      tip: "舌尖顶住上牙龈，一弹就松开，位置和 t 一样，但喉咙要振动（手摸脖子有震感）。短促，别说成“得”。",
+      words: [["dog", "🐶"], ["duck", "🦆"], ["door", "🚪"]],
+      prompt: "儿童绘本风格动画，一只棕色小熊坐在草地上敲一面小鼓，鼓面一震一震，树上的小鸟跟着节奏点头，柔和明亮的色彩，圆润可爱，10 秒，画面中不要出现任何文字或字母。" }
   ];
   const BY = Object.fromEntries(SOUNDS.map(s => [s.l, s]));
+  const SAME = { k: "c" }; // 共用一条录音的字母
+  const keyOf = ch => SAME[ch] || ch;
+  const labelOf = s => s.also ? s.l + " " + s.also : s.l;
 
-  // 只用第一组 6 个字母就能拼出的词
-  const BLEND = {
-    two: [["at", ""], ["it", ""], ["in", ""], ["an", ""]],
-    three: [["tap", "🚰"], ["nap", "😴"], ["pan", "🍳"], ["pin", "📌"], ["tin", "🥫"],
-            ["sit", "🪑"], ["sip", "🥤"], ["pat", "🐶"], ["tip", "👆"], ["pit", "🕳️"]]
-  };
-  const SENTENCES = [
-    ["Tap it.", "敲一敲它。"],
-    ["Sit in it.", "坐进去。"],
-    ["Pip naps.", "皮普在打盹。"],
-    ["Nan sips it.", "南南喝了一小口。"],
-    ["Tip it in.", "把它倒进去。"],
-    ["Pat sits.", "帕特坐下了。"]
+  const GROUPS = [
+    { id: 1, name: "第一组", sounds: ["s", "a", "t", "i", "p", "n"] },
+    { id: 2, name: "第二组", sounds: ["c", "e", "h", "r", "m", "d"] }
   ];
+
+  // 每一关的词只用到当时已经学过的字母
+  const LEVELS = [
+    { id: "g1a", label: "两个字母", group: 1,
+      words: [["at", ""], ["it", ""], ["in", ""], ["an", ""]] },
+    { id: "g1b", label: "三个字母", group: 1,
+      words: [["tap", "🚰"], ["nap", "😴"], ["pan", "🍳"], ["pin", "📌"], ["tin", "🥫"],
+              ["sit", "🪑"], ["sip", "🥤"], ["pat", "🐶"], ["tip", "👆"], ["pit", "🕳️"]] },
+    { id: "g2", label: "第二组", group: 2,
+      words: [["cat", "🐱"], ["cap", "🧢"], ["hat", "🎩"], ["hen", "🐔"], ["pen", "🖊️"], ["ten", "🔟"],
+              ["net", "🥅"], ["red", "🔴"], ["rat", "🐀"], ["map", "🗺️"], ["sad", "😢"], ["kid", "🧒"]] }
+  ];
+  const SENTENCES = {
+    1: [
+      ["Tap it.", "敲一敲它。"],
+      ["Sit in it.", "坐进去。"],
+      ["Pip naps.", "皮普在打盹。"],
+      ["Nan sips it.", "南南喝了一小口。"],
+      ["Tip it in.", "把它倒进去。"],
+      ["Pat sits.", "帕特坐下了。"]
+    ],
+    2: [
+      ["Ten red hens.", "十只红色的母鸡。"],
+      ["Dan hid in it.", "丹躲在里面。"],
+      ["Pam can pet it.", "帕姆可以摸摸它。"],
+      ["Dad met Pam.", "爸爸碰见了帕姆。"],
+      ["Ted can nap.", "泰德可以睡个午觉。"],
+      ["Red cap, red hat.", "红色鸭舌帽，红色礼帽。"]
+    ]
+  };
   const isV = ch => "aeiou".includes(ch.toLowerCase());
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -330,9 +390,10 @@
     return [
       !!P.heard[l],
       s.words.every(w => P.words[w[0]]),
-      Object.keys(P.blended).some(w => w.includes(l))
+      Object.keys(P.blended).some(w => w.includes(l) || (s.also && w.includes(s.also)))
     ];
   }
+  function dotsHtml(l) { return stars(l).map(on => '<span class="dot' + (on ? " on" : "") + '"></span>').join(""); }
 
   // ---------- 录音 / 视频存储（IndexedDB，本设备） ----------
   let dbp = null, memStore = new Map(), idbOK = true;
@@ -414,11 +475,12 @@
   }
 
   let lastMissing = 0;
-  function playSound(l) {
+  function playSound(ch) {
+    const l = keyOf(ch);
     return new Promise(res => {
       const c = clips[l];
       if (!c) {
-        if (Date.now() - lastMissing > 2500) { toast("「" + l + "」还没有录音，请家长长按右上角进去录"); lastMissing = Date.now(); }
+        if (Date.now() - lastMissing > 2500) { toast("「" + (BY[l] ? labelOf(BY[l]) : l) + "」还没有录音，请家长长按右上角进去录"); lastMissing = Date.now(); }
         setTimeout(() => res(false), 450); return;
       }
       stopCurrent();
@@ -468,12 +530,14 @@
     clearTimeout(toastT); toastT = setTimeout(() => { t.hidden = true; }, 2600);
   }
   function magSpan(ch, extra) { return '<span class="mag' + (isV(ch) ? " v" : "") + (extra ? " " + extra : "") + '">' + esc(ch) + "</span>"; }
+  // 一块磁贴上的字母：c k 两个字母并排
+  function tileLetters(s) { return s.also ? '<span class="pair">' + magSpan(s.l) + magSpan(s.also) + "</span>" : magSpan(s.l); }
 
   // ---------- 视图 ----------
   let tab = "sounds";
   try { tab = localStorage.getItem("magnet-phonics-tab") || "sounds"; } catch (e) {}
   const view = $("#view");
-  const ui = { detail: null, level: "two", bi: 0, si: 0 };
+  const ui = { detail: null, level: "g1a", bi: 0, sg: 1, si: 0 };
 
   function setTab(t) {
     tab = t; ui.detail = null;
@@ -490,15 +554,19 @@
     window.scrollTo(0, 0);
   }
 
-  // 学音：六块磁贴
+  // 学音：每组六块磁贴
   function renderGrid() {
     const missing = SOUNDS.filter(s => !clips[s.l]).length;
     view.innerHTML =
       '<div class="lead"><h2>点一个字母</h2><p>每个字母集满 3 颗星</p></div>' +
-      '<div class="grid">' + SOUNDS.map(s =>
-        '<button class="tile" data-l="' + s.l + '" aria-label="字母 ' + s.l + '">' + magSpan(s.l) +
-        '<span class="dots">' + stars(s.l).map(on => '<span class="dot' + (on ? " on" : "") + '"></span>').join("") + "</span></button>"
-      ).join("") + "</div>" +
+      GROUPS.map(g =>
+        '<section class="group"><h3 class="gname">' + g.name + '<span>' + g.sounds.map(l => labelOf(BY[l])).join(" ") + "</span></h3>" +
+        '<div class="grid">' + g.sounds.map(l => {
+          const s = BY[l];
+          return '<button class="tile" data-l="' + s.l + '" aria-label="字母 ' + labelOf(s) + '">' + tileLetters(s) +
+            '<span class="dots">' + dotsHtml(s.l) + "</span></button>";
+        }).join("") + "</div></section>"
+      ).join("") +
       (missing ? '<div class="notice"><span aria-hidden="true">🎙️</span><span>还有 ' + missing + ' 个音没录。录好之前，点字母不会出声。家长长按右上角「家长」进入录音。</span></div>' : "");
     view.querySelectorAll(".tile").forEach(b => b.addEventListener("click", () => {
       ui.detail = b.dataset.l; renderDetail(); hearLetter();
@@ -517,20 +585,20 @@
     view.innerHTML =
       '<div class="detail">' +
         '<div class="bar"><button class="pill" id="back">← 全部字母</button>' +
-        '<span class="dots" aria-label="星星">' + stars(s.l).map(on => '<span class="dot' + (on ? " on" : "") + '"></span>').join("") + "</span></div>" +
+        '<span class="dots" aria-label="星星">' + dotsHtml(s.l) + "</span></div>" +
         '<div class="hero">' +
-          '<button class="bigletter mag' + (isV(s.l) ? " v" : "") + '" id="big" aria-label="听 ' + s.l + ' 的声音">' + s.l + "</button>" +
+          '<button class="bigletter' + (s.also ? " two" : "") + '" id="big" aria-label="听 ' + labelOf(s) + ' 的声音">' + tileLetters(s) + "</button>" +
           '<div class="mnemo"><span class="pic" aria-hidden="true">' + s.pic + '</span><span class="say">' + esc(s.kid) + '</span><span class="ipa">' + s.ipa + "</span></div>" +
         "</div>" +
-        '<div class="tap-hint">点大字母听声音，跟着说三遍</div>' +
+        '<div class="tap-hint">' + (s.also ? "c 和 k 发一样的音。" : "") + "点大字母听声音，跟着说三遍</div>" +
         '<div class="words">' + s.words.map(w =>
           '<button class="wcard' + (P.words[w[0]] ? " done" : "") + '" data-w="' + w[0] + '"><span class="pic" aria-hidden="true">' + w[1] + '</span>' +
           '<span class="w"><b class="' + (isV(s.l) ? "v" : "") + '">' + esc(w[0][0]) + "</b>" + esc(w[0].slice(1)) + "</span></button>"
         ).join("") + "</div>" +
         '<div class="actions">' +
-          '<button class="pill" id="prev"' + (i === 0 ? " disabled" : "") + ">← " + (i > 0 ? SOUNDS[i - 1].l : "") + "</button>" +
+          '<button class="pill" id="prev"' + (i === 0 ? " disabled" : "") + ">← " + (i > 0 ? labelOf(SOUNDS[i - 1]) : "") + "</button>" +
           (videos[s.l] ? '<button class="pill gold" id="story">▶ 看故事</button>' : "") +
-          '<button class="pill primary" id="next"' + (i === SOUNDS.length - 1 ? " disabled" : "") + ">" + (i < SOUNDS.length - 1 ? SOUNDS[i + 1].l : "") + " →</button>" +
+          '<button class="pill primary" id="next"' + (i === SOUNDS.length - 1 ? " disabled" : "") + ">" + (i < SOUNDS.length - 1 ? labelOf(SOUNDS[i + 1]) : "") + " →</button>" +
         "</div>" +
       "</div>";
     $("#back").addEventListener("click", () => { ui.detail = null; renderGrid(); });
@@ -545,21 +613,21 @@
   }
   function refreshDots() {
     const d = view.querySelector(".bar .dots");
-    if (d && ui.detail) d.innerHTML = stars(ui.detail).map(on => '<span class="dot' + (on ? " on" : "") + '"></span>').join("");
+    if (d && ui.detail) d.innerHTML = dotsHtml(ui.detail);
   }
 
   // 拼一拼
   let drag = null, busy = false;
-  function curWord() { const list = BLEND[ui.level]; return list[ui.bi % list.length]; }
+  function curLevel() { return LEVELS.find(v => v.id === ui.level) || LEVELS[0]; }
+  function curWord() { const list = curLevel().words; return list[ui.bi % list.length]; }
   function renderBlend() {
     const [word] = curWord();
-    const all = BLEND.two.concat(BLEND.three);
+    const all = curLevel().words;
     const got = all.filter(w => P.blended[w[0]]).length;
     view.innerHTML =
       '<div class="lead"><h2>拼一拼</h2>' +
-        '<div class="seg" role="group" aria-label="难度">' +
-          '<button data-lv="two" aria-pressed="' + (ui.level === "two") + '">两个字母</button>' +
-          '<button data-lv="three" aria-pressed="' + (ui.level === "three") + '">三个字母</button>' +
+        '<div class="seg" role="group" aria-label="关卡">' +
+          LEVELS.map(v => '<button data-lv="' + v.id + '" aria-pressed="' + (ui.level === v.id) + '">' + v.label + "</button>").join("") +
         "</div></div>" +
       '<div class="stage">' +
         '<div class="slide" id="slide">' + word.split("").map((ch, i) =>
@@ -571,7 +639,7 @@
           '<button class="pill primary" id="nextw">下一个 →</button>' +
         "</div>" +
       "</div>" +
-      '<p class="tally">已经拼会 <b>' + got + "</b> / " + all.length + " 个</p>" +
+      '<p class="tally">这一关拼会了 <b>' + got + "</b> / " + all.length + " 个</p>" +
       '<div class="shelf">' + all.map(w => '<span class="' + (P.blended[w[0]] ? "got" : "") + '">' + w[0] + "</span>").join("") + "</div>";
 
     view.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => { ui.level = b.dataset.lv; ui.bi = 0; renderBlend(); }));
@@ -624,7 +692,7 @@
     if (first) setTimeout(() => { if (tab === "blend" && curWord()[0] === word) refreshShelf(); }, 300);
   }
   function refreshShelf() {
-    const all = BLEND.two.concat(BLEND.three);
+    const all = curLevel().words;
     const tally = view.querySelector(".tally b"); if (tally) tally.textContent = all.filter(w => P.blended[w[0]]).length;
     view.querySelectorAll(".shelf span").forEach(s => { if (P.blended[s.textContent]) s.classList.add("got"); });
   }
@@ -646,7 +714,8 @@
 
   // 读句子
   function renderRead() {
-    const [sen, zh] = SENTENCES[ui.si % SENTENCES.length];
+    const list = SENTENCES[ui.sg];
+    const [sen, zh] = list[ui.si % list.length];
     const tokens = sen.match(/[A-Za-z]+|[.,!?]/g);
     let html = "";
     tokens.forEach((tk, idx) => {
@@ -657,7 +726,11 @@
         (p ? '<span class="p">' + p + "</span>" : "") + "</button>";
     });
     view.innerHTML =
-      '<div class="lead"><h2>读句子</h2><p>第 ' + (ui.si % SENTENCES.length + 1) + " / " + SENTENCES.length + " 句 · 点一个词，拼给你听</p></div>" +
+      '<div class="lead"><h2>读句子</h2>' +
+        '<div class="seg" role="group" aria-label="组别">' +
+          GROUPS.map(g => '<button data-sg="' + g.id + '" aria-pressed="' + (ui.sg === g.id) + '">' + g.name + "</button>").join("") +
+        "</div></div>" +
+      '<p class="count">第 ' + (ui.si % list.length + 1) + " / " + list.length + " 句 · 点一个词，拼给你听</p>" +
       '<div class="stage">' +
         '<div class="sentence">' + html + "</div>" +
         '<div class="zh" id="zh"></div>' +
@@ -666,7 +739,8 @@
           '<button class="pill primary" id="nexts">下一句 →</button>' +
         "</div>" +
       "</div>" +
-      '<div class="notice"><span aria-hidden="true">👉</span><span>家长提示：先让孩子自己用手指着一个个词读，读不出来再点那个词。大写的 P、N 就是小写 p、n 的“大个子”，名字开头要大写。</span></div>';
+      '<div class="notice"><span aria-hidden="true">👉</span><span>家长提示：先让孩子自己用手指着一个个词读，读不出来再点那个词。句子开头和名字开头的字母要大写，大写的 P、D、T 就是小写字母的“大个子”，读音一样。</span></div>';
+    view.querySelectorAll("[data-sg]").forEach(b => b.addEventListener("click", () => { ui.sg = +b.dataset.sg; ui.si = 0; renderRead(); }));
     view.querySelectorAll(".chip").forEach(c => c.addEventListener("click", async () => {
       if (busy) return; busy = true; ac();
       view.querySelectorAll(".chip").forEach(x => x.classList.remove("lit")); c.classList.add("lit");
@@ -716,6 +790,8 @@
   let resetArmed = false;
   function renderParent() {
     const rec = SOUNDS.filter(s => clips[s.l]).length;
+    const byGroup = rowFn => GROUPS.map(g => '<h4 class="pgroup">' + g.name + "</h4>" + g.sounds.map(l => rowFn(BY[l])).join("")).join("");
+    const rowLetters = s => '<div class="plet">' + tileLetters(s) + "</div>";
     const voiceLine = !("speechSynthesis" in window)
       ? '<span class="status">✗ 这个浏览器不支持语音朗读，整词和句子不会发音。</span>'
       : enVoice
@@ -725,11 +801,11 @@
       '<div class="inner">' +
         '<div class="bar"><h2>家长区</h2><button class="pill primary" id="pclose">回到孩子的页面</button></div>' +
 
-        '<section class="card"><div><h3>第一步：录 6 个音（已录 ' + rec + " / 6）</h3>" +
-          '<p class="sub">这个 App 最重要的部分。每个音单独录一条，1–2 秒，只发字母的“音”，不念字母名。在手机或平板上点「录音」会打开系统录音机，录完点保存就会回到这里。空白会自动剪掉，不用掐着录。</p></div>' +
-          SOUNDS.map(s => {
+        '<section class="card"><div><h3>第一步：录音（已录 ' + rec + " / " + SOUNDS.length + "）</h3>" +
+          '<p class="sub">这个 App 最重要的部分。每个音单独录一条，1–2 秒，只发字母的“音”，不念字母名。在手机或平板上点「录音」会打开系统录音机，录完点保存就会回到这里。空白会自动剪掉，不用掐着录。学到哪组录哪组就行。</p></div>' +
+          byGroup(s => {
             const c = clips[s.l];
-            return '<div class="prow">' + magSpan(s.l) + "<div>" +
+            return '<div class="prow">' + rowLetters(s) + "<div>" +
               '<p class="tip"><span class="ipa">' + s.ipa + "</span> " + esc(s.tip) + "</p>" +
               '<div class="status' + (c ? " ok" : "") + '">' + (c ? "✓ 已录：" + esc(c.name) + (c.trimmed ? "（已去掉前后空白）" : "（这台设备没法自动剪空白，录时前后别停太久）") : "还没录") + "</div>" +
               '<div class="btns">' +
@@ -737,14 +813,14 @@
                 '<label class="btn">选文件<input type="file" accept="audio/*" hidden data-rec="' + s.l + '"></label>' +
                 (c ? '<button class="btn" data-play="' + s.l + '">▶ 试听</button><button class="btn danger" data-delrec="' + s.l + '">删除</button>' : "") +
               "</div></div></div>";
-          }).join("") +
+          }) +
         "</section>" +
 
         '<section class="card"><div><h3>第二步（可选）：放 AI 故事视频</h3>' +
           '<p class="sub">视频只负责让孩子愿意点开，不负责教发音。复制下面的提示词到可灵或即梦生成 5–10 秒的动画，下载后在这里选上。提示词里写了“不要出现文字”，因为 AI 画的字母经常画错。放进来后，孩子在字母页会看到「看故事」按钮。</p></div>' +
-          SOUNDS.map(s => {
+          byGroup(s => {
             const v = videos[s.l];
-            return '<div class="prow">' + magSpan(s.l) + "<div>" +
+            return '<div class="prow">' + rowLetters(s) + "<div>" +
               '<div class="status' + (v ? " ok" : "") + '">' + (v ? "✓ 已放：" + esc(v.name) + "（" + (v.size / 1048576).toFixed(1) + " MB）" : "还没放视频") + "</div>" +
               '<p class="prompt" id="pr-' + s.l + '">' + esc(s.prompt) + "</p>" +
               '<div class="btns">' +
@@ -752,14 +828,15 @@
                 '<label class="btn solid">选视频<input type="file" accept="video/*" hidden data-vid="' + s.l + '"></label>' +
                 (v ? '<button class="btn" data-watch="' + s.l + '">▶ 预览</button><button class="btn danger" data-delvid="' + s.l + '">删除</button>' : "") +
               "</div></div></div>";
-          }).join("") +
+          }) +
         "</section>" +
 
         '<section class="card"><h3>怎么带孩子用</h3>' +
           '<ol class="steps">' +
             "<li>每天 10 分钟就够。先「学音」：一天 1–2 个字母，点大字母听，跟着说，再点三个单词。</li>" +
-            "<li>6 个音都会了再去「拼一拼」：先练两个字母（at、it），让孩子用手指从左滑到右，边滑边发音，滑完会念出整个词。</li>" +
+            "<li>第一组 6 个音都会了再去「拼一拼」：先练两个字母（at、it），让孩子用手指从左滑到右，边滑边发音，滑完会念出整个词。</li>" +
             "<li>孩子能自己拼三个字母的词后，再去「读句子」。</li>" +
+            "<li>第一组的词能自己拼了，再开始第二组。第二组的词会混用两组的字母，正好复习第一组。</li>" +
             "<li>每个字母的三颗星分别是：听过这个音、听过三个单词、拼过含这个字母的词。</li>" +
           "</ol></section>" +
 
