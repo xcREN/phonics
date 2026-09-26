@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>磁贴拼读</title>
-<meta name="description" content="给 5 岁孩子用的自然拼读：第一组 s a t i p n，第二组 c k e h r m d">
+<meta name="description" content="给 5 岁孩子用的自然拼读：三组：s a t i p n、c k e h r m d、g o u l f b">
 <meta name="theme-color" content="#E9EEF2">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png" type="image/png">
@@ -108,7 +108,9 @@
   .gname { margin: 0 0 10px; font-size: 15px; font-weight: 600; display: flex; align-items: baseline; gap: 10px; }
   .gname span { font-family: var(--en); font-weight: 400; color: var(--muted); letter-spacing: .08em; }
   .pair { display: inline-flex; align-items: baseline; gap: .4em; }
+  .tile .pair { gap: clamp(12px, 3.5vw, 22px); }
   .tile .pair .mag { font-size: clamp(46px, 13vw, 84px); }
+  .plet .pair { gap: 8px; }
   .bigletter.two { font-size: clamp(96px, 27vw, 170px); }
   .count { margin: -6px 0 12px; color: var(--muted); font-size: 14px; }
   .pgroup { margin: 4px 0 -4px; font-size: 14px; color: var(--muted); font-weight: 600; }
@@ -166,8 +168,9 @@
   .wcard.done::after { content: "★"; position: absolute; top: 6px; right: 10px; color: var(--gold); font-size: 16px; }
 
   /* 拼一拼 */
-  .seg { display: inline-flex; background: var(--panel); border-radius: 999px; padding: 4px; box-shadow: var(--shadow); }
-  .seg button { border: none; background: none; cursor: pointer; border-radius: 999px; padding: 8px 14px; font-size: 14px; color: var(--muted); }
+  .seg { display: inline-flex; max-width: 100%; overflow-x: auto; scrollbar-width: none; background: var(--panel); border-radius: 999px; padding: 4px; box-shadow: var(--shadow); }
+  .seg::-webkit-scrollbar { display: none; }
+  .seg button { flex: none; white-space: nowrap; border: none; background: none; cursor: pointer; border-radius: 999px; padding: 8px 12px; font-size: 14px; color: var(--muted); }
   .seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
 
   .stage { background: var(--panel); border-radius: 28px; box-shadow: var(--shadow); padding: 22px 12px 18px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
@@ -181,6 +184,8 @@
   }
   .btile .mag { font-size: clamp(64px, 18vw, 104px); pointer-events: none; }
   .btile.lit { background: #FFE9A8; transform: translateY(-6px); }
+  .slide.n4 .btile { width: clamp(62px, 17vw, 118px); border-radius: 18px; }
+  .slide.n4 .btile .mag { font-size: clamp(50px, 14vw, 96px); }
   .track { width: min(100%, 460px); display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 14px; }
   .track .line { flex: 1; height: 0; border-top: 3px dashed var(--line); position: relative; }
   .track .line::after { content: ""; position: absolute; right: -2px; top: -8px; border: 7px solid transparent; border-left: 10px solid var(--line); }
@@ -260,7 +265,7 @@
 
 <div class="app">
   <header class="top">
-    <div class="brand">磁贴拼读<small>第一组、第二组 · 12 个音</small></div>
+    <div class="brand">磁贴拼读<small>三组 · 18 个音</small></div>
     <button class="gear" id="gear" aria-label="家长设置（长按进入）">
       <svg class="ring" width="52" height="52" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"></circle></svg>
       家长
@@ -334,7 +339,33 @@
     { l: "d", ipa: "/d/", pic: "🥁", kid: "敲小鼓 d d d",
       tip: "舌尖顶住上牙龈，一弹就松开，位置和 t 一样，但喉咙要振动（手摸脖子有震感）。短促，别说成“得”。",
       words: [["dog", "🐶"], ["duck", "🦆"], ["door", "🚪"]],
-      prompt: "儿童绘本风格动画，一只棕色小熊坐在草地上敲一面小鼓，鼓面一震一震，树上的小鸟跟着节奏点头，柔和明亮的色彩，圆润可爱，10 秒，画面中不要出现任何文字或字母。" }
+      prompt: "儿童绘本风格动画，一只棕色小熊坐在草地上敲一面小鼓，鼓面一震一震，树上的小鸟跟着节奏点头，柔和明亮的色彩，圆润可爱，10 秒，画面中不要出现任何文字或字母。" },
+
+    // 第三组
+    { l: "g", ipa: "/g/", pic: "🥛", kid: "咕嘟喝水 g g g",
+      tip: "舌根抬起顶住上颚后部，一弹就放开，位置和 k 一样，但喉咙要振动（手摸脖子有震感）。短促，别说成“哥”。",
+      words: [["goat", "🐐"], ["gift", "🎁"], ["grapes", "🍇"]],
+      prompt: "儿童绘本风格动画，一个小朋友捧着一大杯牛奶咕嘟咕嘟地喝，喉咙一动一动，喝完露出白白的奶胡子，开心地笑，柔和明亮的色彩，圆润可爱，10 秒，画面中不要出现任何文字或字母。" },
+    { l: "o", ipa: "/ɒ/", pic: "🐙", kid: "小章鱼 o o o",
+      tip: "嘴巴张圆，下巴往下放，短短的一声。英式接近短短的“傲”，美式接近“啊”，选一种全家统一就行。不滑成“ou”，也不是字母名“欧”。",
+      words: [["octopus", "🐙"], ["orange", "🍊"], ["otter", "🦦"]],
+      prompt: "儿童绘本风格动画，一只粉色的小章鱼在蓝色海底张开八条腿转圈圈，嘴巴圆圆的，身边冒出一串泡泡，柔和明亮的色彩，圆润可爱，10 秒，画面中不要出现任何文字或字母。" },
+    { l: "u", ipa: "/ʌ/", pic: "☂️", kid: "撑雨伞 u u u",
+      tip: "嘴巴放松、微微张开，短短的“阿”，像肚子被轻轻按了一下发出的声音。不是字母名“优”。",
+      words: [["umbrella", "☂️"], ["up", "⬆️"], ["uncle", "👨"]],
+      prompt: "儿童绘本风格动画，下雨天，一个穿黄色雨衣的小朋友撑开一把彩色雨伞，雨点落在伞面上弹起来，小朋友抬头往上看，柔和明亮的色彩，圆润可爱，10 秒，画面中不要出现任何文字或字母。" },
+    { l: "l", ipa: "/l/", pic: "🍭", kid: "舔棒棒糖 llll",
+      tip: "舌尖顶住上牙后面，声音从舌头两边出来，可以拉长 llll。别说成“了”或“勒”。",
+      words: [["lion", "🦁"], ["leaf", "🍃"], ["lemon", "🍋"]],
+      prompt: "儿童绘本风格动画，一只小熊猫拿着一根彩虹棒棒糖，伸出小舌头一下一下地舔，表情很满足，柔和明亮的色彩，圆润可爱，10 秒，画面中不要出现任何文字或字母。" },
+    { l: "f", ipa: "/f/", pic: "🐟", kid: "小鱼吐泡 ffff",
+      tip: "上牙轻轻咬住下嘴唇，从缝里吹气，可以拉长 ffff。喉咙不振动，别说成“夫”或“福”。",
+      words: [["fish", "🐟"], ["fox", "🦊"], ["fire", "🔥"]],
+      prompt: "儿童绘本风格动画，一条橘色的小鱼在清清的鱼缸里游，一边游一边吐出一串圆圆的泡泡，泡泡慢慢飘到水面破掉，柔和明亮的色彩，圆润可爱，10 秒，画面中不要出现任何文字或字母。" },
+    { l: "b", ipa: "/b/", pic: "⚽", kid: "拍皮球 b b b",
+      tip: "双唇闭紧，一弹就张开，位置和 p 一样，但喉咙要振动，也不送气（手放嘴前几乎感觉不到风）。别说成“不”或“波”。",
+      words: [["bear", "🐻"], ["banana", "🍌"], ["bus", "🚌"]],
+      prompt: "儿童绘本风格动画，一只小兔子在院子里拍一个红色皮球，皮球一下一下弹起来，小兔子跟着节奏蹦跳，柔和明亮的色彩，圆润可爱，10 秒，画面中不要出现任何文字或字母。" }
   ];
   const BY = Object.fromEntries(SOUNDS.map(s => [s.l, s]));
   const SAME = { k: "c" }; // 共用一条录音的字母
@@ -343,19 +374,27 @@
 
   const GROUPS = [
     { id: 1, name: "第一组", sounds: ["s", "a", "t", "i", "p", "n"] },
-    { id: 2, name: "第二组", sounds: ["c", "e", "h", "r", "m", "d"] }
+    { id: 2, name: "第二组", sounds: ["c", "e", "h", "r", "m", "d"] },
+    { id: 3, name: "第三组", sounds: ["g", "o", "u", "l", "f", "b"] }
   ];
 
   // 每一关的词只用到当时已经学过的字母
   const LEVELS = [
-    { id: "g1a", label: "两个字母", group: 1,
+    { id: "g1a", label: "两字母", group: 1,
       words: [["at", ""], ["it", ""], ["in", ""], ["an", ""]] },
-    { id: "g1b", label: "三个字母", group: 1,
+    { id: "g1b", label: "三字母", group: 1,
       words: [["tap", "🚰"], ["nap", "😴"], ["pan", "🍳"], ["pin", "📌"], ["tin", "🥫"],
               ["sit", "🪑"], ["sip", "🥤"], ["pat", "🐶"], ["tip", "👆"], ["pit", "🕳️"]] },
     { id: "g2", label: "第二组", group: 2,
       words: [["cat", "🐱"], ["cap", "🧢"], ["hat", "🎩"], ["hen", "🐔"], ["pen", "🖊️"], ["ten", "🔟"],
-              ["net", "🥅"], ["red", "🔴"], ["rat", "🐀"], ["map", "🗺️"], ["sad", "😢"], ["kid", "🧒"]] }
+              ["net", "🥅"], ["red", "🔴"], ["rat", "🐀"], ["map", "🗺️"], ["sad", "😢"], ["kid", "🧒"]] },
+    { id: "g3", label: "第三组", group: 3,
+      words: [["dog", "🐶"], ["log", "🪵"], ["hot", "🥵"], ["bug", "🐞"], ["bus", "🚌"], ["sun", "☀️"],
+              ["cup", "☕"], ["hug", "🤗"], ["bat", "🦇"], ["bed", "🛏️"], ["leg", "🦵"], ["lip", "👄"]] },
+    // 两个辅音挨在一起（fr、dr、mp、nd……），三组学完再练
+    { id: "g3b", label: "四字母", group: 3,
+      words: [["frog", "🐸"], ["flag", "🚩"], ["drum", "🥁"], ["milk", "🥛"], ["lamp", "💡"],
+              ["hand", "✋"], ["gift", "🎁"], ["tent", "⛺"], ["crab", "🦀"], ["sand", "🏖️"]] }
   ];
   const SENTENCES = {
     1: [
@@ -373,6 +412,15 @@
       ["Dad met Pam.", "爸爸碰见了帕姆。"],
       ["Ted can nap.", "泰德可以睡个午觉。"],
       ["Red cap, red hat.", "红色鸭舌帽，红色礼帽。"]
+    ],
+    3: [
+      ["Get up, Mum!", "快起床，妈妈！"],
+      ["Tom can run.", "汤姆会跑。"],
+      ["Dan got up.", "丹起床了。"],
+      ["Sam hugs Mum.", "萨姆抱抱妈妈。"],
+      ["Big red bugs.", "红色的大虫子。"],
+      ["Frogs hop.", "青蛙跳跳。"],
+      ["Get on, Bob!", "上来吧，鲍勃！"]
     ]
   };
   const isV = ch => "aeiou".includes(ch.toLowerCase());
@@ -630,7 +678,7 @@
           LEVELS.map(v => '<button data-lv="' + v.id + '" aria-pressed="' + (ui.level === v.id) + '">' + v.label + "</button>").join("") +
         "</div></div>" +
       '<div class="stage">' +
-        '<div class="slide" id="slide">' + word.split("").map((ch, i) =>
+        '<div class="slide n' + word.length + '" id="slide">' + word.split("").map((ch, i) =>
           '<div class="btile" data-i="' + i + '">' + magSpan(ch) + "</div>").join("") + "</div>" +
         '<div class="track" aria-hidden="true"><span>手指</span><span class="line"></span><span>滑过去</span></div>' +
         '<div class="reveal" id="reveal" aria-live="polite"></div>' +
@@ -836,7 +884,8 @@
             "<li>每天 10 分钟就够。先「学音」：一天 1–2 个字母，点大字母听，跟着说，再点三个单词。</li>" +
             "<li>第一组 6 个音都会了再去「拼一拼」：先练两个字母（at、it），让孩子用手指从左滑到右，边滑边发音，滑完会念出整个词。</li>" +
             "<li>孩子能自己拼三个字母的词后，再去「读句子」。</li>" +
-            "<li>第一组的词能自己拼了，再开始第二组。第二组的词会混用两组的字母，正好复习第一组。</li>" +
+            "<li>第一组的词能自己拼了，再开始第二组，以此类推。后面每组的词都会混用前面学过的字母，正好复习。</li>" +
+            "<li>三组都学完、三个字母的词拼得很顺了，再练「四字母」：frog、drum 这种两个辅音挨在一起的词，要把两个音快速连起来。</li>" +
             "<li>每个字母的三颗星分别是：听过这个音、听过三个单词、拼过含这个字母的词。</li>" +
           "</ol></section>" +
 

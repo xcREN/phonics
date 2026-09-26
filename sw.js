@@ -1,5 +1,5 @@
 // 改了任何文件就把版本号加一，平板下次联网打开时会自动更新
-const VERSION = "v2";
+const VERSION = "v3";
 const CACHE = "magnet-phonics-" + VERSION;
 const FILES = [
   "./",
